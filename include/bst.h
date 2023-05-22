@@ -1,11 +1,10 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
-#pragma once
 #include <iostream>
 #include <vector>
 #include <fstream>
-
+#include <string>
 template <typename T>
 class BST {
  private:
@@ -30,7 +29,7 @@ class BST {
         }
         return root;
     }
-    int max(int a, int b) {
+    int mymax(int a, int b) {
         if (a > b)
             return a;
         else
@@ -40,7 +39,7 @@ class BST {
         if (!root) {
             return 0;
         }
-        return max(depthTree(root->left), depthTree(root->right)) + 1;
+        return mymax(depthTree(root->left), depthTree(root->right)) + 1;
     }
     int searchTree(Node* root, const T& value) {
         if (!root) {
@@ -49,8 +48,9 @@ class BST {
             searchTree(root->left, value);
         } else if (root->value < value) {
             searchTree(root->right, value);
-        } else
+        } else {
             return root->count;
+        }
     }
 
  public:
