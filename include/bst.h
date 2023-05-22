@@ -14,6 +14,7 @@ class BST {
         int count;
         Node* left, * right;
     };
+    int s;
     Node* root;
     Node* addNode(Node* root, const T& value) {
         if (!root) {
@@ -45,7 +46,7 @@ class BST {
     }
 
  public:
-    BST() :root(nullptr) {}
+    BST() :root(nullptr), s(0) {}
     void add(const T& value) {
         root = addNode(root, value);
     }
@@ -56,18 +57,19 @@ class BST {
     }
 
     int search(const T& value) {
+        searchTree(root, value);
         return searchTree(root, value);
     }
 
-    int searchTree(Node* root, const T& value) {
+    void searchTree(Node* root, const T& value) {
         if (!root)
-            return 0;
+            s = 0;
         else if (root->value > value)
             searchTree(root->left, value);
         else if (root->value < value)
             searchTree(root->right, value);
         else
-            return root->count;
+            s = root->count;
     }
 };
 
