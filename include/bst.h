@@ -13,6 +13,7 @@ class BST {
         int count;
         Node* left, * right;
     };
+ 
     Node* root;
     Node* addNode(Node* root, const T& value) {
         if (!root) {
@@ -29,18 +30,21 @@ class BST {
         }
         return root;
     }
+ 
     int mymax(int a, int b) {
         if (a > b)
             return a;
         else
             return b;
     }
+ 
     int depthTree(Node* root) {
         if (!root) {
             return 0;
         }
         return mymax(depthTree(root->left), depthTree(root->right)) + 1;
     }
+ 
     int searchTree(Node* root, const T& value) {
         if (!root)
             return 0;
@@ -57,14 +61,18 @@ class BST {
     void add(const T& value) {
         root = addNode(root, value);
     }
+ 
     int depth() {
         int d = depthTree(root);
         return d - 1;
     }
+ 
     int search(const T& value) {
         return searchTree(root, value);
     }
 };
+
 BST<std::string> makeTree(const char* filename);
 std::string get_corr_word(std::string str);
+
 #endif  // INCLUDE_BST_H_
