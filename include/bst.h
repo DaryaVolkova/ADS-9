@@ -66,9 +66,7 @@ class BST {
             searchTree(root->left, value);
         else if (root->value < value)
             searchTree(root->right, value);
-        else
-            return root->count;
-        return 0;
+        return root->count;
     }
 };
 
