@@ -66,8 +66,7 @@ std::string get_corr_word(std::string s) {
                 s[i] = tolower(s[i]);
             }
         }
-    }
-    else {
+    } else {
         s.clear();
     }
     return s;
