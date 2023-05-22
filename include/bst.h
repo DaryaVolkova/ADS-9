@@ -42,15 +42,14 @@ class BST {
         return mymax(depthTree(root->left), depthTree(root->right)) + 1;
     }
     int searchTree(Node* root, const T& value) {
-        if (!root) {
+        if (!root)
             return 0;
-        } else if (root->value > value) {
+        else if (root->value > value)
             searchTree(root->left, value);
-        } else if (root->value < value) {
+        else if (root->value < value)
             searchTree(root->right, value);
-        } else {
+        else
             return root->count;
-        }
     }
 
  public:
