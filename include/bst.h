@@ -19,10 +19,9 @@ class BST {
         if (!root) {
             root = new Node;
             root->value = value;
-	           root->count = 1;
+            root->count = 1;
             root->left = root->right = nullptr;
-        }
-        else if (root->value > value)
+        } else if (root->value > value)
             root->left = addNode(root->left, value);
         else if (root->value < value)
             root->right = addNode(root->right, value);
@@ -31,7 +30,7 @@ class BST {
         return root;
     }
 
-    int max(int a, int b) {
+    int mymax(int a, int b) {
         if (a > b)
             return a;
         else
@@ -41,18 +40,7 @@ class BST {
     int depthTree(Node* root) {
         if (!root)
             return 0;
-        return max(depthTree(root->left), depthTree(root->right)) + 1;
-    }
-
-    int searchTree(Node* root, const T& value) {
-        if (!root)
-            return 0;
-        else if (root->value > value)
-            searchTree(root->left, value);
-        else if (root->value < value)
-            searchTree(root->right, value);
-        else
-            return root->count;
+        return mymax(depthTree(root->left), depthTree(root->right)) + 1;
     }
 
  public:
@@ -68,6 +56,17 @@ class BST {
 
     int search(const T& value) {
         return searchTree(root, value);
+    }
+
+    int searchTree(Node* root, const T& value) {
+        if (!root)
+            return 0;
+        else if (root->value > value)
+            searchTree(root->left, value);
+        else if (root->value < value)
+            searchTree(root->right, value);
+        else
+            return root->count;
     }
 };
 
