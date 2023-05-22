@@ -5,46 +5,45 @@
 #include <vector>
 #include <fstream>
 #include <string>
+
 template <typename T>
 class BST {
  private:
-    struct Node {
+    struct Node { //Node - узел
         T value;
         int count;
         Node* left, * right;
     };
- 
     Node* root;
     Node* addNode(Node* root, const T& value) {
         if (!root) {
             root = new Node;
             root->value = value;
-            root->count = 1;
+	           root->count = 1;
             root->left = root->right = nullptr;
-        } else if (root->value > value) {
-            root->left = addNode(root->left, value);
-        } else if (root->value < value) {
-            root->right = addNode(root->right, value);
-        } else {
-            root->count++;
         }
+        else if (root->value > value)
+            root->left = addNode(root->left, value);
+        else if (root->value < value)
+            root->right = addNode(root->right, value);
+        else
+            root->count++;
         return root;
     }
- 
-    int mymax(int a, int b) {
+
+    int max(int a, int b) {
         if (a > b)
             return a;
         else
             return b;
     }
- 
+
     int depthTree(Node* root) {
-        if (!root) {
+        if (!root)
             return 0;
-        }
-        return mymax(depthTree(root->left), depthTree(root->right)) + 1;
+        return max(depthTree(root->left), depthTree(root->right)) + 1;
     }
- 
+
     int searchTree(Node* root, const T& value) {
         if (!root)
             return 0;
@@ -61,12 +60,12 @@ class BST {
     void add(const T& value) {
         root = addNode(root, value);
     }
- 
+
     int depth() {
         int d = depthTree(root);
         return d - 1;
     }
- 
+
     int search(const T& value) {
         return searchTree(root, value);
     }
